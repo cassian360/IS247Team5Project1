@@ -1,7 +1,5 @@
 package com.example.financetracker; // Main package
 
-import java.util.Objects;
-
 /**
  * Represents a category for transactions or budgets.
  * Uses equals/hashCode for proper comparison, especially in collections.
