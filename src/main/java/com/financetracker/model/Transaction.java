@@ -1,260 +1,100 @@
-package com.financetracker.manager;
+package com.financetracker.model;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
-import java.util.function.Predicate;
-
-import com.financetracker.model.Transaction;
-import com.financetracker.model.Income;
-import com.financetracker.model.Expense;
 
 /**
- * Class for managing user transactions
- * Uses ArrayList and Stack data structures
+ * Abstract class representing a financial transaction
+ * Serves as a base class for Income and Expense
+ * (requirement 8 - Abstract Class)
  */
-public class TransactionManager {
-    // ArrayList for storing transactions (requirement 13)
-    private ArrayList<Transaction> transactions;
+public abstract class Transaction {
+    // Static counter for transaction IDs
+    private static int nextId = 1;
     
-    // Stack for undo functionality (requirement 14)
-    private Stack<Transaction> recentlyDeletedTransactions;
-    
-    /**
-     * Constructor for TransactionManager
-     */
-    public TransactionManager() {
-        this.transactions = new ArrayList<>();
-        this.recentlyDeletedTransactions = new Stack<>();
-    }
+    protected int id;
+    protected double amount;
+    protected String description;
+    protected String category;
+    protected Date date;
     
     /**
-     * Add a transaction to the list
+     * Constructor for Transaction
      * 
-     * @param transaction Transaction to add
-     */
-    public void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
-    }
-    
-    /**
-     * Remove a transaction by ID
-     * 
-     * @param transactionId ID of transaction to remove
-     * @return true if successful, false otherwise
-     */
-    public boolean removeTransaction(int transactionId) {
-        for (int i = 0; i < transactions.size(); i++) {
-            if (transactions.get(i).getId() == transactionId) {
-                // Push to undo stack before removing
-                recentlyDeletedTransactions.push(transactions.get(i));
-                transactions.remove(i);
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    /**
-     * Undo the most recent transaction deletion
-     * Uses Stack data structure (requirement 14)
-     * 
-     * @return true if successful, false if no transaction to restore
-     */
-    public boolean undoDelete() {
-        if (recentlyDeletedTransactions.isEmpty()) {
-            return false;
-        }
-        
-        Transaction transaction = recentlyDeletedTransactions.pop();
-        transactions.add(transaction);
-        return true;
-    }
-    
-    /**
-     * Get all transactions
-     * 
-     * @return List of all transactions
-     */
-    public List<Transaction> getAllTransactions() {
-        return new ArrayList<>(transactions);
-    }
-    
-    /**
-     * Get transactions by type
-     * 
-     * @param type Transaction type (Income or Expense)
-     * @return List of matching transactions
-     */
-    public List<Transaction> getTransactionsByType(String type) {
-        List<Transaction> result = new ArrayList<>();
-        
-        for (Transaction t : transactions) {
-            if (t.getType().equals(type)) {
-                result.add(t);
-            }
-        }
-        
-        return result;
-    }
-    
-    /**
-     * Get transactions by category
-     * 
+     * @param amount Transaction amount
+     * @param description Transaction description
      * @param category Transaction category
-     * @return List of matching transactions
+     * @param date Date of transaction
      */
-    public List<Transaction> getTransactionsByCategory(String category) {
-        List<Transaction> result = new ArrayList<>();
-        
-        for (Transaction t : transactions) {
-            if (t.getCategory().equals(category)) {
-                result.add(t);
-            }
-        }
-        
-        return result;
+    public Transaction(double amount, String description, String category, Date date) {
+        this.id = nextId++;  // Assign the next available ID and increment
+        this.amount = amount;
+        this.description = description;
+        this.category = category;
+        this.date = date;
+    }
+    
+    // Getter methods
+    
+    public int getId() {
+        return id;
+    }
+    
+    public double getAmount() {
+        return amount;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public String getCategory() {
+        return category;
+    }
+    
+    public Date getDate() {
+        return date;
     }
     
     /**
-     * Get transactions by custom filter
-     * Uses Predicate (functional interface)
+     * Abstract method to get transaction type
+     * Must be implemented by subclasses
+     * Part of abstraction (requirement 18)
      * 
-     * @param filter Predicate for filtering transactions
-     * @return List of matching transactions
+     * @return String representing the transaction type
      */
-    public List<Transaction> getTransactionsByFilter(Predicate<Transaction> filter) {
-        List<Transaction> result = new ArrayList<>();
-        
-        for (Transaction t : transactions) {
-            if (filter.test(t)) {
-                result.add(t);
-            }
-        }
-        
-        return result;
-    }
+    public abstract String getType();
     
     /**
-     * Get transactions by date range
+     * Abstract method to determine if transaction affects balance positively or negatively
+     * Must be implemented by subclasses
      * 
-     * @param startDate Start date
-     * @param endDate End date
-     * @return List of matching transactions
+     * @return double value to affect balance (positive or negative)
      */
-    public List<Transaction> getTransactionsByDateRange(Date startDate, Date endDate) {
-        return getTransactionsByFilter(t -> 
-            !t.getDate().before(startDate) && !t.getDate().after(endDate)
-        );
-    }
+    public abstract double getSignedAmount();
     
     /**
-     * Calculate total balance (income - expenses)
+     * Format date as string
      * 
-     * @return Current balance
+     * @return Formatted date string
      */
-    public double getBalance() {
-        double balance = 0.0;
-        
-        for (Transaction t : transactions) {
-            balance += t.getSignedAmount();
-        }
-        
-        return balance;
+    public String getFormattedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date);
     }
     
     /**
-     * Get total income
+     * Returns string representation of transaction
      * 
-     * @return Total income amount
+     * @return String representation
      */
-    public double getTotalIncome() {
-        double total = 0.0;
-        
-        for (Transaction t : transactions) {
-            if (t instanceof Income) {
-                total += t.getAmount();
-            }
-        }
-        
-        return total;
-    }
-    
-    /**
-     * Get total expenses
-     * 
-     * @return Total expense amount
-     */
-    public double getTotalExpenses() {
-        double total = 0.0;
-        
-        for (Transaction t : transactions) {
-            if (t instanceof Expense) {
-                total += t.getAmount();
-            }
-        }
-        
-        return total;
-    }
-    
-    /**
-     * Get expenses grouped by category
-     * Uses Map data structure (requirement 15)
-     * 
-     * @return Map of category to total amount
-     */
-    public Map<String, Double> getExpensesByCategory() {
-        Map<String, Double> categoryMap = new HashMap<>();
-        
-        for (Transaction t : transactions) {
-            if (t instanceof Expense) {
-                String category = t.getCategory();
-                Double currentAmount = categoryMap.getOrDefault(category, 0.0);
-                categoryMap.put(category, currentAmount + t.getAmount());
-            }
-        }
-        
-        return categoryMap;
-    }
-    
-    /**
-     * Get income grouped by category
-     * Uses Map data structure (requirement 15)
-     * 
-     * @return Map of category to total amount
-     */
-    public Map<String, Double> getIncomeByCategory() {
-        Map<String, Double> categoryMap = new HashMap<>();
-        
-        for (Transaction t : transactions) {
-            if (t instanceof Income) {
-                String category = t.getCategory();
-                Double currentAmount = categoryMap.getOrDefault(category, 0.0);
-                categoryMap.put(category, currentAmount + t.getAmount());
-            }
-        }
-        
-        return categoryMap;
-    }
-    
-    /**
-     * Display all transactions
-     */
-    public void displayAllTransactions() {
-        if (transactions.isEmpty()) {
-            System.out.println("No transactions to display.");
-            return;
-        }
-        
-        for (Transaction t : transactions) {
-            System.out.println(t);
-        }
-        
-        // Print summary using printf (requirement 25)
-        System.out.printf("\nSummary: %d transactions, Balance: $%.2f\n", 
-                          transactions.size(), getBalance());
+    @Override
+    public String toString() {
+        return String.format("[%s] %s: $%.2f - %s (%s)",
+                getFormattedDate(),
+                getType(),
+                amount,
+                description,
+                category);
     }
 }
