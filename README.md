@@ -201,10 +201,8 @@ Below is a simplified UML class diagram showcasing the application's core archit
 
 ## 🎯 Code Walkthrough Highlights
 
-* \`\` is an abstract class that forms the base for both `Income` and `Expense`.
-* \`\` centralizes all transaction-related logic and uses `ArrayList` and `Stack` for management and undo capabilities.
-* \`\` tracks overall and category-specific budgets using `Map<String, Double>`.
-* \`\` analyzes data and prints formatted reports using `printf`, while leveraging utility methods.
+* **Transaction** is an abstract class that forms the base for both `Income` and `Expense`.
+* **Manager package** centralizes all transaction-related logic and uses `ArrayList` and `Stack` for management and undo capabilities.
 * **Interfaces and custom exceptions** keep the design clean, flexible, and robust.
 
 Explore each class from `src/main/java/com/financetracker/` to see Java best practices in action.
