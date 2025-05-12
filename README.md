@@ -1,44 +1,77 @@
-# Finance Tracker Application
+# 💰 Finance Tracker – Java Console Application
 
-A comprehensive Java-based finance and expense tracking application that allows users to manage
-their personal finances, track expenses, set budgets, and generate financial reports.
+A comprehensive command-line Java application to manage personal finances. Track income and expenses, set category-based budgets, and generate insightful financial reports — all with robust object-oriented design and modern Java features.
 
-## Team Members
+---
 
-- Oseiwe Ohonsi
-- Chesed Peabody
-- Samantha
-- Yash
+## 👥 Team Members
 
-## Project Overview
+* Oseiwe Ohonsi
+* Chesed Peabody
+* Samantha Morehead
+* Yash Phogat
 
-Finance Tracker is a console-based Java application designed to help users manage their personal
-finances. The application provides a comprehensive solution for tracking income and expenses,
-setting and monitoring budgets, and generating reports to analyze spending patterns.
+---
 
-## Features
+## 📚 Table of Contents
 
-- **Transaction Management**
-  - Add income and expense transactions
-  - Categorize transactions
-  - View transaction history
+* [Overview](#-overview)
+* [Features](#-features)
+* [Technology Stack](#-technology-stack)
+* [Project Structure](#-project-structure)
+* [Installation](#-installation)
+* [Usage](#-usage)
+* [Java Concepts Demonstrated](#-java-concepts-demonstrated)
+* [UML Diagram](#-uml-diagram)
+* [Code Walkthrough Highlights](#-code-walkthrough-highlights)
+* [Contributing](#-contributing)
+* [License](#-license)
 
-- **Budget Management**
-  - Set overall monthly budget
-  - Set category-specific budgets
-  - Track budget vs. actual spending
+---
 
-- **Financial Reports**
-  - Income summary reports
-  - Expense summary reports
-  - Monthly overview reports
-  - Financial statistics
+## 📌 Overview
 
-- **User Management**
-  - User profiles with basic information
-  - User settings management
+**Finance Tracker** is a Java-based console application that provides tools for managing personal finances. It offers structured ways to record transactions, enforce budgets, and generate monthly financial insights. Ideal for students or anyone looking to build better financial habits using Java fundamentals.
 
-## Project Structure
+---
+
+## 🚀 Features
+
+### ✅ Transaction Management
+
+* Add income and expense entries
+* Categorize transactions
+* View detailed transaction history
+
+### ✅ Budget Management
+
+* Set overall monthly and category-specific budgets
+* Monitor actual spending vs. budget
+
+### ✅ Financial Reporting
+
+* Income and expense summaries
+* Monthly overviews with key metrics
+* Simple financial statistics
+
+### ✅ User Management
+
+* User profiles with basic info
+* Manage individual user settings
+
+---
+
+## 🛠️ Technology Stack
+
+* **Language:** Java 11+
+* **Architecture:** Object-Oriented Programming (OOP)
+* **Interface:** Command-Line Interface (CLI)
+* **Build Tool:** Manual (Javac) or Maven (optional)
+* **Version Control:** Git + GitHub
+
+---
+
+## 📁 Project Structure
 
 ```
 FinanceTracker/
@@ -69,89 +102,129 @@ FinanceTracker/
                         └── InsufficientFundsException.java
 ```
 
-## Java Concepts Implemented
+---
 
-This project demonstrates the following Java concepts:
+## ⚙️ Installation
 
-1. Scanner Class - Used for user input 
-2. Variables and Constants - Used throughout all classes
-3. Switch Statements - Used in menu navigation
-4. Conditional Operators - Used in logical operations
-5. Multiple Classes - Project includes more than 5 classes
-6. Inheritance - Transaction is the parent class for Income and Expense
-7. Interfaces - FinancialEntity interface implemented by various classes
-8. Abstract Classes - Transaction is an abstract class
-9. Exceptions - Custom exceptions for handling errors
-10. Recursion - Used in financial calculations
-11. Method Overriding - toString() and other methods are overridden
-12. Method Overloading - Multiple constructors with different parameters
-13. ArrayList - Used to store collections of transactions
-14. Stacks - Used for undo functionality
-15. Map - Used to store category budgets and statistics
-16. Constructors - Used in all classes
-17. Super Keyword - Used in subclass constructors
-18. Abstraction - Implemented through abstract classes and interfaces
-19. Generics - Used in utility classes for flexible data handling
-20. Encapsulation - Private fields with getter/setter methods
-21. Java Library Classes - Date, Calendar, Random, etc.
-22. Static Variables and Methods - Used for shared data and utility functions
-23. This Keyword - Used in constructors and methods
-24. Lists - Used for data collections
-25. Println and Printf Methods - Used for console output
-26. GitHub Projects - Code is organized for GitHub
-27. JavaDoc - Comprehensive documentation
-28. Code on GitHub - Available in this repository
-29. UML Diagrams - Included in the documentation
+### Using Terminal
 
-## Setup and Running
+1. Clone the repository:
 
-### Compiling the Project
+   ```bash
+   git clone https://github.com/yourusername/FinanceTracker.git
+   cd FinanceTracker
+   ```
 
-```bash
-# Navigate to the src/main/java directory
-cd src/main/java
+2. Compile the application:
 
-# Compile the project
-javac com/financetracker/Main.java
-```
+   ```bash
+   javac -d bin src/main/java/com/financetracker/Main.java
+   ```
 
-### Running the Application
+3. Run the application:
 
-```bash
-# From the src/main/java directory
-java com.financetracker.Main
-```
+   ```bash
+   java -cp bin com.financetracker.Main
+   ```
 
-## Generating JavaDocs
+> ⚠️ Make sure you're using Java 11 or newer.
 
-```bash
-# Navigate to the src/main/java directory
-cd src/main/java
+---
 
-# Generate JavaDoc
-javadoc -d ../../docs/javadoc -sourcepath . com.financetracker com.financetracker.model com.financetracker.manager com.financetracker.util com.financetracker.interfaces com.financetracker.exception
-```
-
-## Usage Guide
+## 🧪 Usage
 
 1. **Starting the Application**
-   - Run the Main class
-   - Enter your name and email when prompted
+
+   * Run the Main class
+   * Enter your name and email when prompted
 
 2. **Adding Transactions**
-   - Select "Add Transaction" from the main menu
-   - Choose transaction type (Income or Expense)
-   - Enter amount, description, and category
+
+   * Select "Add Transaction" from the main menu
+   * Choose transaction type (Income or Expense)
+   * Enter amount, description, and category
 
 3. **Managing Budgets**
-   - Select "Manage Budget" from the main menu
-   - Set total budget amount
-   - Allocate budget to specific categories
+
+   * Select "Manage Budget" from the main menu
+   * Set total budget amount
+   * Allocate budget to specific categories
 
 4. **Viewing Reports**
-   - Select "View Reports" from the main menu
-   - Choose report type (Income, Expense, or Monthly Overview)
 
-## License
+   * Select "View Reports" from the main menu
+   * Choose report type (Income, Expense, or Monthly Overview)
 
-This project is licensed under the MIT License.
+---
+
+## 🧠 Java Concepts Demonstrated
+
+This application fulfills a robust list of core Java and OOP principles:
+
+| ✅ Concept             | 💡 Description                              |
+| --------------------- | ------------------------------------------- |
+| Scanner Class         | For all CLI user input                      |
+| Variables & Constants | Throughout all modules                      |
+| Switch Statements     | Menu-driven navigation                      |
+| Conditional Operators | Logical decisions                           |
+| Multiple Classes      | >5 interlinked classes                      |
+| Inheritance           | `Income` and `Expense` extend `Transaction` |
+| Interfaces            | `FinancialEntity` interface                 |
+| Abstract Classes      | `Transaction` base class                    |
+| Exceptions            | Custom exception handling                   |
+| Recursion             | Used in select utility logic                |
+| Method Overriding     | `toString()`, custom behavior               |
+| Method Overloading    | Multiple constructors                       |
+| ArrayList             | Used to store user data and transactions    |
+| Stack                 | Undo feature for transactions               |
+| Map                   | Budget per category and report metrics      |
+| Constructors          | Parameterized and default                   |
+| Super Keyword         | In subclass constructors                    |
+| Abstraction           | Clean APIs via abstract/interface use       |
+| Generics              | Utility classes with flexible types         |
+| Encapsulation         | Private fields + getters/setters            |
+| Java Libraries        | `Date`, `Calendar`, `Random`, etc.          |
+| Static Methods        | Utility and constants                       |
+| This Keyword          | Used in constructors and logic              |
+| Lists                 | `ArrayList`, `List` interface               |
+| Println / Printf      | Console output formatting                   |
+| GitHub Integration    | Source-controlled via Git                   |
+| JavaDoc               | Full documentation in `/docs/javadoc/`      |
+
+---
+
+## 📊 UML Diagram
+
+Below is a simplified UML class diagram showcasing the application's core architecture:
+
+---
+
+## 🎯 Code Walkthrough Highlights
+
+* \`\` is an abstract class that forms the base for both `Income` and `Expense`.
+* \`\` centralizes all transaction-related logic and uses `ArrayList` and `Stack` for management and undo capabilities.
+* \`\` tracks overall and category-specific budgets using `Map<String, Double>`.
+* \`\` analyzes data and prints formatted reports using `printf`, while leveraging utility methods.
+* **Interfaces and custom exceptions** keep the design clean, flexible, and robust.
+
+Explore each class from `src/main/java/com/financetracker/` to see Java best practices in action.
+
+---
+
+## 🤝 Contributing
+
+Want to make this project better?
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b your-feature`
+3. Commit your changes: `git commit -m "Added feature"`
+4. Push the branch: `git push origin your-feature`
+5. Submit a Pull Request 🚀
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more information.
+
+---
