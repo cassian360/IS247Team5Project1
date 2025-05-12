@@ -14,7 +14,7 @@ public class Main {
     private static final String APP_NAME = "Finance Tracker v1.0";
     
     // Scanner for user input
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     
     // User account
     private static User currentUser;
