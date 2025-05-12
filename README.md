@@ -193,10 +193,6 @@ This application fulfills a robust list of core Java and OOP principles:
 
 ---
 
-## 📊 UML Diagram
-
-Below is a simplified UML class diagram showcasing the application's core architecture:
-
 ---
 
 ## 🎯 Code Walkthrough Highlights
