@@ -12,10 +12,29 @@ public abstract class Transaction {
     // Static counter for transaction IDs
     private static int nextId = 1;
     
+    /**
+     * Unique identifier for the transaction
+     */
     protected int id;
+    
+    /**
+     * Amount of the transaction
+     */
     protected double amount;
+    
+    /**
+     * Description of the transaction
+     */
     protected String description;
+    
+    /**
+     * Category of the transaction
+     */
     protected String category;
+    
+    /**
+     * Date when the transaction occurred
+     */
     protected Date date;
     
     /**
@@ -34,24 +53,47 @@ public abstract class Transaction {
         this.date = date;
     }
     
-    // Getter methods
-    
+    /**
+     * Get the transaction ID
+     * 
+     * @return The transaction ID
+     */
     public int getId() {
         return id;
     }
     
+    /**
+     * Get the transaction amount
+     * 
+     * @return The transaction amount
+     */
     public double getAmount() {
         return amount;
     }
     
+    /**
+     * Get the transaction description
+     * 
+     * @return The transaction description
+     */
     public String getDescription() {
         return description;
     }
     
+    /**
+     * Get the transaction category
+     * 
+     * @return The transaction category
+     */
     public String getCategory() {
         return category;
     }
     
+    /**
+     * Get the transaction date
+     * 
+     * @return The transaction date
+     */
     public Date getDate() {
         return date;
     }

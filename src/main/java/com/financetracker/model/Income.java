@@ -37,7 +37,7 @@ public class Income extends Transaction {
     
     /**
      * Get transaction type
-     * Implementation of abstract method (requirements 11 & 18)
+     * Implementation of abstract method (requirements 11 and 18)
      * 
      * @return String "Income"
      */

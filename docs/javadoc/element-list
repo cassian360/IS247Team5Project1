@@ -1,0 +1,6 @@
+com.financetracker
+com.financetracker.exception
+com.financetracker.interfaces
+com.financetracker.manager
+com.financetracker.model
+com.financetracker.util

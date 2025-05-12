@@ -4,7 +4,14 @@ package com.financetracker.exception;
  * Exception for insufficient funds
  */
 public class InsufficientFundsException extends Exception {
+    /**
+     * Available amount of funds
+     */
     private double available;
+    
+    /**
+     * Requested amount of funds
+     */
     private double requested;
     
     /**
