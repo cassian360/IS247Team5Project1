@@ -1,3 +1,5 @@
+package com.financetracker.manager;
+
 import java.util.HashMap;
 import java.util.Map;
 

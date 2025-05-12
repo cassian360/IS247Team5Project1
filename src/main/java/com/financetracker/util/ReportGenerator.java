@@ -1,9 +1,16 @@
+package com.financetracker.util;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import com.financetracker.manager.TransactionManager;
+import com.financetracker.model.Expense;
+import com.financetracker.model.Income;
+import com.financetracker.model.Transaction;
 
 /**
  * Class for generating financial reports

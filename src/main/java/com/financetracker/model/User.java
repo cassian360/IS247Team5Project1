@@ -1,3 +1,8 @@
+package com.financetracker.model;
+
+import com.financetracker.manager.TransactionManager;
+import com.financetracker.manager.BudgetManager;
+
 /**
  * Represents a user of the Finance Tracker application.
  * Implements encapsulation through private fields with getters/setters.

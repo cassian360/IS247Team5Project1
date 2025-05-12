@@ -1,12 +1,23 @@
+package com.financetracker;
+
 import java.util.Date;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+
+import com.financetracker.model.User;
+import com.financetracker.model.Income;
+import com.financetracker.model.Expense;
+import com.financetracker.model.Transaction;
+import com.financetracker.manager.TransactionManager;
+import com.financetracker.manager.BudgetManager;
+import com.financetracker.util.ReportGenerator;
+import com.financetracker.exception.InvalidAmountException;
 
 /**
  * Main class for the Finance Tracker application.
  * This class contains the entry point and main menu functionality.
  * 
- * @author Your Name
+ * @author Oseiwe Ohonsi, Chesed Peabody, Samantha, Yash
  * @version 1.0
  */
 public class Main {
@@ -14,7 +25,7 @@ public class Main {
     private static final String APP_NAME = "Finance Tracker v1.0";
     
     // Scanner for user input
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     
     // User account
     private static User currentUser;
@@ -223,8 +234,12 @@ public class Main {
                 default: category = "Other";
             }
             
+            System.out.println("Is this a recurring expense? (y/n): ");
+            String recurringInput = scanner.nextLine();
+            boolean isRecurring = recurringInput.equalsIgnoreCase("y");
+            
             // Method overloading (requirement 12) - using the version with isRecurring parameter
-            Expense expense = new Expense(amount, description, category, new Date(), false);
+            Expense expense = new Expense(amount, description, category, new Date(), isRecurring);
             
             // Add to user's transaction manager
             currentUser.getTransactionManager().addTransaction(expense);
@@ -459,3 +474,16 @@ public class Main {
         System.out.println("Feature not implemented in this version.");
     }
     
+    /**
+     * Calculate factorial - example of recursion (requirement 10)
+     * This method is used in the ReportGenerator for statistical purposes
+     * @param n The number to calculate factorial for
+     * @return The factorial of n
+     */
+    public static int factorial(int n) {
+        if (n <= 1) {
+            return 1;
+        }
+        return n * factorial(n - 1);
+    }
+}

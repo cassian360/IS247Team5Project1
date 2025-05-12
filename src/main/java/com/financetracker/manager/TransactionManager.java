@@ -1,3 +1,5 @@
+package com.financetracker.manager;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -5,6 +7,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.function.Predicate;
+
+import com.financetracker.model.Transaction;
+import com.financetracker.model.Income;
+import com.financetracker.model.Expense;
 
 /**
  * Class for managing user transactions
@@ -251,3 +257,4 @@ public class TransactionManager {
         System.out.printf("\nSummary: %d transactions, Balance: $%.2f\n", 
                           transactions.size(), getBalance());
     }
+}

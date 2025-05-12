@@ -1,3 +1,5 @@
+package com.financetracker.exception;
+
 /**
  * Exception for invalid category
  */
